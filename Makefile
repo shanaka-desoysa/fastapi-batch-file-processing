@@ -65,3 +65,7 @@ ps:
 ## notebook                | Run Jupyter Notebook. Make sure Dockerfile INSTALL_JUPYTER set to true.
 notebook:
 		docker-compose -f $(COMPOSE_FILE) exec web jupyter lab --ip=0.0.0.0 --allow-root --NotebookApp.custom_display_url=http://127.0.0.1:8888
+
+## shell                   | Attach to shell.
+shell:
+		docker-compose -f $(COMPOSE_FILE) exec web bash
