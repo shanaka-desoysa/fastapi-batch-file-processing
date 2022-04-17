@@ -1,1 +1,8 @@
 fastapi
+pandas
+# required for Excel
+openpyxl
+# required for File input
+python-multipart
+# required for the FileResponse
+aiofiles
