@@ -34,19 +34,16 @@ def process_excel_file(file: bytes = File(...)) -> Any:
     logger.info(f"process_excel_file request: len {len(file)}")
 
     try:
+        # Read Excel file from request
         df = pd.read_excel(io.BytesIO(file).read())
         rows_count = df.shape[0]
         logger.info(f"process_excel_file df: {df}")
         logger.info(f'dataframe columns {df.columns}')
 
-        # do something with df
-        df = pd.DataFrame()
-        df['feature_1'] = np.random.randint(1, 1000, rows_count)
-        df['feature_2'] = np.random.choice(['a', 'b', 'c'], rows_count)
-        df['feature_3'] = np.random.randint(1, 100, rows_count)
-        df['feature_4'] = np.random.choice([True, False], rows_count)
+        # Do something with the df
         df['predicted_rate'] = np.random.randint(1, 100, rows_count)
 
+        # Write Excel file to response
         stream = io.BytesIO()
         df.to_excel(stream, index=False)
         stream.seek(0)
